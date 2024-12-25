@@ -7,7 +7,9 @@
   },
   "dependencies": {
     "@elysiajs/swagger": "^1.1.6",
-    "elysia": "^1.1.25"
+    "elysia": "^1.1.25",
+    "google-auth-library": "^9.15.0",
+    "googleapis": "^144.0.0"
   },
   "devDependencies": {
     "bun-types": "latest"
