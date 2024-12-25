@@ -1,12 +1,26 @@
 {
   "name": "vspo-tracker",
-  "module": "index.ts",
-  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
   "devDependencies": {
     "prettier": "^3.4.2",
     "turbo": "^2.3.3"
   },
   "dependencies": {
     "@types/bun": "latest"
-  }
+  },
+  "engines": {
+    "node": ">=20.16.0"
+  },
+  "packageManager": "npm@10.8.1"
 }
