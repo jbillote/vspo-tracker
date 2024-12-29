@@ -1,5 +1,5 @@
 import { Elysia, t } from 'elysia'
-import channels from '../../channels.json'
+import { YouTubeService } from '../service/youtubeService'
 
 const YouTubeController = new Elysia()
     .guard({
@@ -7,13 +7,13 @@ const YouTubeController = new Elysia()
             memberName: t.String()
         })
     })
-    .resolve(async ({ params }) => {
+    .resolve(({ params }) => {
         return {
             member: decodeURI(params.memberName.toLowerCase()),
         }
     })
     .get('/api/youtube/:memberName', ({ member }) => {
-        return channels.streamers.find((streamer: any) => streamer.name.toLowerCase() === member).youtube
+        return YouTubeService.getYouTubeID(member)
     })
 
 export { YouTubeController }
