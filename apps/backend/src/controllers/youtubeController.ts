@@ -1,4 +1,5 @@
 import { Elysia, t } from 'elysia'
+import { youtubeVideo } from '../models/youtubeVideo'
 import { YouTubeService } from '../service/youtubeService'
 
 const YouTubeController = new Elysia()
@@ -13,7 +14,9 @@ const YouTubeController = new Elysia()
         }
     })
     .get('/api/youtube/:memberName', ({ member }) => {
-        return YouTubeService.getYouTubeID(member)
+        return YouTubeService.getVideos(member)
+    }, {
+        response: t.Array(youtubeVideo)
     })
 
 export { YouTubeController }
