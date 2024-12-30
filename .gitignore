@@ -176,3 +176,6 @@ dist
 
 # turbo
 .turbo
+
+# sqlite
+dev.db
