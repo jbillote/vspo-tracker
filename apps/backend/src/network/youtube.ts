@@ -1,5 +1,5 @@
+import { DateTime } from 'luxon'
 import { google } from "googleapis"
-import { YouTubeVideo } from "../models/youtubeVideo"
 
 class YouTube {
     private apiKey: string
@@ -8,27 +8,19 @@ class YouTube {
         this.apiKey = apiKey
     }
     
-    public async getVideos(streamerId: string): Promise<YouTubeVideo[]> {
-        let videos: YouTubeVideo[] = []
-        
-        let resp = await google.youtube('v3').search.list({
+    public async getVideos(streamerId: string, date: DateTime): Promise<{[x:string]: any}[]> {
+        const resp = await google.youtube('v3').search.list({
             key: this.apiKey,
             part: 'snippet',
             channelId: streamerId,
             type: 'video',
-            eventType: 'completed', 
-            order: 'date'
+            order: 'date',
+            maxResults: 50,
+            publishedAfter: date.toISO(),
+            publishedBefore: date.plus({ day: 1 }).toISO()
         })
 
-        resp['data']['items'].forEach(video => {
-            videos.push({
-                title: video['snippet']['title'],
-                published: video['snippet']['publishedAt'],
-                id: video['id']['videoId']
-            })
-        })
-
-        return videos
+        return resp['data']['items']
     }
 }
 

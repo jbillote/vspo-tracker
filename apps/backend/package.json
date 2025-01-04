@@ -11,9 +11,11 @@
     "@prisma/client": "^6.1.0",
     "elysia": "^1.1.25",
     "google-auth-library": "^9.15.0",
-    "googleapis": "^144.0.0"
+    "googleapis": "^144.0.0",
+    "luxon": "^3.5.0"
   },
   "devDependencies": {
+    "@types/luxon": "^3.4.2",
     "bun-types": "latest",
     "prisma": "^6.1.0"
   },
