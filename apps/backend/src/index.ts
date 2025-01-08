@@ -1,5 +1,5 @@
-import { Elysia } from "elysia"
-import { YouTubeController } from "./controllers/youtubeController"
+import { Elysia } from 'elysia'
+import { YouTubeController } from './controllers/youtubeController'
 
 const app = new Elysia()
   .use(YouTubeController)

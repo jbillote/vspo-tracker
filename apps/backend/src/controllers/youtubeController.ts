@@ -1,9 +1,26 @@
 import { Elysia, t } from 'elysia'
+import { logger, type InferContext } from '@bogeychan/elysia-logger'
 import { DateTime } from 'luxon'
+import { RequestID } from '../middleware/requestId'
 import { youtubeVideo } from '../models/youtubeVideo'
 import { YouTubeService } from '../service/youtubeService'
 
 const YouTubeController = new Elysia()
+
+YouTubeController
+    .use(RequestID)
+    .use(logger({
+        transport: {
+            target: 'pino-pretty',
+            options: {
+                colorize: true
+            }
+        },
+        autoLogging: false,
+        customProps(ctx: InferContext<typeof YouTubeController>) {
+            return { requestID: ctx.requestID }
+        }
+    }))
     .guard({
         params: t.Object({
             member: t.String()
@@ -20,8 +37,8 @@ const YouTubeController = new Elysia()
             date: date.startOf('day')
         }
     })
-    .get('/api/youtube/:member', ({ member, date }) => {
-        return YouTubeService.getVideos(member, date)
+    .get('/api/youtube/:member', async ({ log, member, date }) => {
+        return await new YouTubeService(log).getVideos(member, date)
     }, {
         response: t.Array(youtubeVideo)
     })
