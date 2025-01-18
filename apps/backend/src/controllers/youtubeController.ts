@@ -8,8 +8,7 @@ import { YouTubeService } from '../service/youtubeService'
 const YouTubeController = new Elysia()
 
 YouTubeController
-    .use(RequestID)
-    .use(Logger(YouTubeController))
+    .use(Logger)
     .guard({
         params: t.Object({
             member: t.String()
