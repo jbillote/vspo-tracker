@@ -1,6 +1,6 @@
 import { Elysia, t } from 'elysia'
-import { logger, type InferContext } from '@bogeychan/elysia-logger'
 import { DateTime } from 'luxon'
+import { Logger } from '../middleware/logger'
 import { RequestID } from '../middleware/requestId'
 import { youtubeVideo } from '../models/youtubeVideo'
 import { YouTubeService } from '../service/youtubeService'
@@ -9,18 +9,7 @@ const YouTubeController = new Elysia()
 
 YouTubeController
     .use(RequestID)
-    .use(logger({
-        transport: {
-            target: 'pino-pretty',
-            options: {
-                colorize: true
-            }
-        },
-        autoLogging: false,
-        customProps(ctx: InferContext<typeof YouTubeController>) {
-            return { requestID: ctx.requestID }
-        }
-    }))
+    .use(Logger(YouTubeController))
     .guard({
         params: t.Object({
             member: t.String()
