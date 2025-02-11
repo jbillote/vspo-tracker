@@ -13,8 +13,8 @@ datasource db {
 model YouTubeVideo {
   id String @id @unique
   member String
-  clipper String?
   title String
   date DateTime
   status String
+  thumbnail String
 }

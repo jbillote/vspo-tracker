@@ -1,7 +1,6 @@
 import { Elysia, t } from 'elysia'
 import { DateTime } from 'luxon'
 import { Logger } from '../middleware/logger'
-import { RequestID } from '../middleware/requestId'
 import { youtubeVideo } from '../models/youtubeVideo'
 import { YouTubeService } from '../service/youtubeService'
 
