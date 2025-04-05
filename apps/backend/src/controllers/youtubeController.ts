@@ -1,13 +1,17 @@
 import { Elysia, t } from 'elysia'
 import { DateTime } from 'luxon'
-import { Logger } from '../middleware/logger'
+import { Logger } from 'middleware'
 import { youtubeVideo } from '../models/youtubeVideo'
 import { YouTubeService } from '../service/youtubeService'
 
 const YouTubeController = new Elysia()
-
-YouTubeController
     .use(Logger)
+    .derive({ as: 'scoped' }, ({ log }) => {
+        return {
+            youTubeService: new YouTubeService(log),
+            log: log.child({ component: 'youTubeController' }),
+        }
+    })
     .guard({
         params: t.Object({
             member: t.String()
@@ -24,8 +28,8 @@ YouTubeController
             date: date.startOf('day')
         }
     })
-    .get('/api/youtube/:member', async ({ log, member, date }) => {
-        return await new YouTubeService(log).getVideos(member, date)
+    .get('/api/youtube/:member', async ({ youTubeService, member, date }) => {
+        return await youTubeService.getVideos(member, date)
     }, {
         response: t.Array(youtubeVideo)
     })

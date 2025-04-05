@@ -3,7 +3,7 @@ import { DateTime } from "luxon"
 import { PrismaClient } from "@prisma/client"
 import { YouTubeVideo } from "../models/youtubeVideo"
 import { YouTube } from "../network/youtube"
-import { Logger } from "@bogeychan/elysia-logger/dist/types"
+import { Logger } from "pino"
 
 class YouTubeService {
     private logger: Logger
