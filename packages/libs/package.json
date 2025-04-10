@@ -1,0 +1,16 @@
+{
+  "name": "libs",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "elysia": "^1.2.25",
+    "backend": "workspace:*"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@elysiajs/eden": "^1.2.0"
+  }
+}
