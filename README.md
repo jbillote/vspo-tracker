@@ -16,7 +16,7 @@ VSPO! Tracker uses the following technologies:
 
 ## Frontend
 - TypeScript
-- [Svelte](https://svelte.dev/)
+- [Next.js](https://nextjs.org/)
 - [ElysiaJS Eden](https://elysiajs.com/eden/overview.html)
 - [Tailwind](https://tailwindcss.com/)
 
