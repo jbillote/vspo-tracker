@@ -1,116 +1,120 @@
 {
-    "streamers": [
-        {
-            "name": "Yakumo Beni",
-            "youtube": "UCjXBuHmWkieBApgBhDuJMMQ"
-        },
-        {
-            "name": "Kaga Sumire",
-            "youtube": "UCyLGcqYs7RsBb3L0SJfzGYA"
-        },
-        {
-            "name": "Kaga Nazuna",
-            "youtube": "UCiMG6VdScBabPhJ1ZtaVmbw"
-        },
-        {
-            "name": "Kogara Toto",
-            "youtube": "UCgTzsBI0DIRopMylJEDqnog"
-        },
-        {
-            "name": "Ichinose Uruha",
-            "youtube": "UC5LyYg6cCA4yHEYvtUsir3g"
-        },
-        {
-            "name": "Kurumi Noah",
-            "youtube": "UCIcAj6WkJ8vZ7DeJVgmeqKw"
-        },
-        {
-            "name": "Tachibana Hinano",
-            "youtube": "UCvUc0m317LWTTPZoBQV479A"
-        },
-        {
-            "name": "Kisaragi Ren",
-            "youtube": "UCGWa1dMU_sDCaRQjdabsVgg"
-        },
-        {
-            "name": "Tosaki Mimi",
-            "youtube": "UCnvVG9RbOW3J6Ifqo-zKLiw"
-        },
-        {
-            "name": "Asumi Sena",
-            "youtube": "UCF_U2GCKHvDz52jWdizppIA"
-        },
-        {
-            "name": "Hanabusa Lisa",
-            "youtube": "UCurEA8YoqFwimJcAuSHU0MQ"
-        },
-        {
-            "name": "Kaminari Qpi",
-            "youtube": "UCMp55EbT_ZlqiMS3lCj01BQ"
-        },
-        {
-            "name": "Aizawa Ema",
-            "youtube": "UCPkKpOHxEDcwmUAnRpIu-Ng"
-        },
-        {
-            "name": "Shinomiya Runa",
-            "youtube": "UCD5W21JqNMv_tV9nfjvF9sw"
-        },
-        {
-            "name": "Nekota Tsuna",
-            "youtube": "UCIjdfjcSaEgdjwbgjxC3ZWg"
-        },
-        {
-            "name": "Shiranami Ramune",
-            "youtube": "UC61OwuYOVuKkpKnid-43Twg"
-        },
-        {
-            "name": "Komori Met",
-            "youtube": "UCzUNASdzI4PV5SlqtYwAkKQ"
-        },
-        {
-            "name": "Yumeno Akari",
-            "youtube": "UCS5l_Y0oMVTjEos2LuyeSZQ"
-        },
-        {
-            "name": "Yano Kuromu",
-            "youtube": "UCX4WL24YEOUYd7qDsFSLDOw"
-        },
-        {
-            "name": "Tsumugi Kokage",
-            "youtube": "UC-WX1CXssCtCtc2TNIRnJzg"
-        },
-        {
-            "name": "Sendo Yuuhi",
-            "youtube": "UCuDY3ibSP2MFRgf7eo3cojg"
-        },
-        {
-            "name": "Choya Hanabi",
-            "youtube": "UCL9hJsdk9eQa0IlWbFB2oRg"
-        },
-        {
-            "name": "Amayui Moka",
-            "youtube": "UC8vKBjGY2HVfbW9GAmgikWw"
-        },
-        {
-            "name": "Remia Aotsuki",
-            "youtube": "UCCra1t-eIlO3ULyXQQMD9Xw"
-        },
-        {
-            "name": "Arya Kuroha",
-            "youtube": "UCLlJpxXt6L5d-XQ0cDdIyDQ"
-        },
-        {
-            "name": "Jira Jisaki",
-            "youtube": "UCeCWj-SiJG9SWN6wGORiLmw"
-        },
-        {
-            "name": "Narin Mikure",
-            "youtube": "UCKSpM183c85d5V2cW5qaUjA"
-        },
-        {
-            "name": "Riko Solari",
-            "youtube": "UC7Xglp1fske9zmRe7Oj8YyA"
-        }
-    ]
+    "VSPO!": {
+        "JP": [
+            {
+                "name": "Yakumo Beni",
+                "youtube": "UCjXBuHmWkieBApgBhDuJMMQ"
+            },
+            {
+                "name": "Kaga Sumire",
+                "youtube": "UCyLGcqYs7RsBb3L0SJfzGYA"
+            },
+            {
+                "name": "Kaga Nazuna",
+                "youtube": "UCiMG6VdScBabPhJ1ZtaVmbw"
+            },
+            {
+                "name": "Kogara Toto",
+                "youtube": "UCgTzsBI0DIRopMylJEDqnog"
+            },
+            {
+                "name": "Ichinose Uruha",
+                "youtube": "UC5LyYg6cCA4yHEYvtUsir3g"
+            },
+            {
+                "name": "Kurumi Noah",
+                "youtube": "UCIcAj6WkJ8vZ7DeJVgmeqKw"
+            },
+            {
+                "name": "Tachibana Hinano",
+                "youtube": "UCvUc0m317LWTTPZoBQV479A"
+            },
+            {
+                "name": "Kisaragi Ren",
+                "youtube": "UCGWa1dMU_sDCaRQjdabsVgg"
+            },
+            {
+                "name": "Tosaki Mimi",
+                "youtube": "UCnvVG9RbOW3J6Ifqo-zKLiw"
+            },
+            {
+                "name": "Asumi Sena",
+                "youtube": "UCF_U2GCKHvDz52jWdizppIA"
+            },
+            {
+                "name": "Hanabusa Lisa",
+                "youtube": "UCurEA8YoqFwimJcAuSHU0MQ"
+            },
+            {
+                "name": "Kaminari Qpi",
+                "youtube": "UCMp55EbT_ZlqiMS3lCj01BQ"
+            },
+            {
+                "name": "Aizawa Ema",
+                "youtube": "UCPkKpOHxEDcwmUAnRpIu-Ng"
+            },
+            {
+                "name": "Shinomiya Runa",
+                "youtube": "UCD5W21JqNMv_tV9nfjvF9sw"
+            },
+            {
+                "name": "Nekota Tsuna",
+                "youtube": "UCIjdfjcSaEgdjwbgjxC3ZWg"
+            },
+            {
+                "name": "Shiranami Ramune",
+                "youtube": "UC61OwuYOVuKkpKnid-43Twg"
+            },
+            {
+                "name": "Komori Met",
+                "youtube": "UCzUNASdzI4PV5SlqtYwAkKQ"
+            },
+            {
+                "name": "Yumeno Akari",
+                "youtube": "UCS5l_Y0oMVTjEos2LuyeSZQ"
+            },
+            {
+                "name": "Yano Kuromu",
+                "youtube": "UCX4WL24YEOUYd7qDsFSLDOw"
+            },
+            {
+                "name": "Tsumugi Kokage",
+                "youtube": "UC-WX1CXssCtCtc2TNIRnJzg"
+            },
+            {
+                "name": "Sendo Yuuhi",
+                "youtube": "UCuDY3ibSP2MFRgf7eo3cojg"
+            },
+            {
+                "name": "Choya Hanabi",
+                "youtube": "UCL9hJsdk9eQa0IlWbFB2oRg"
+            },
+            {
+                "name": "Amayui Moka",
+                "youtube": "UC8vKBjGY2HVfbW9GAmgikWw"
+            }
+        ],
+        "EN": [
+            {
+                "name": "Remia Aotsuki",
+                "youtube": "UCCra1t-eIlO3ULyXQQMD9Xw"
+            },
+            {
+                "name": "Arya Kuroha",
+                "youtube": "UCLlJpxXt6L5d-XQ0cDdIyDQ"
+            },
+            {
+                "name": "Jira Jisaki",
+                "youtube": "UCeCWj-SiJG9SWN6wGORiLmw"
+            },
+            {
+                "name": "Narin Mikure",
+                "youtube": "UCKSpM183c85d5V2cW5qaUjA"
+            },
+            {
+                "name": "Riko Solari",
+                "youtube": "UC7Xglp1fske9zmRe7Oj8YyA"
+            }
+        ]
+    }
 }

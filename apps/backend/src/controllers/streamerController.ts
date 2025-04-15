@@ -11,15 +11,15 @@ const StreamerController = new Elysia()
             log: log.child({ component: 'streamerController' })
         }
     })
-    .get('/api/streamers', async ({ streamerService }) => {
-        const streamerNames = await streamerService.getStreamerNames()
-
-        return {
-            streamers: streamerNames
-        }
+    .get('/api/streamers', async ({ log, streamerService }) => {
+        log.info('Fetching streamer names')
+        return await streamerService.getStreamerNames()
     }, {
         response: t.Object({
-            streamers: t.Array(t.String())
+            "VSPO!": t.Object({
+                "JP": t.Array(t.String()),
+                "EN": t.Array(t.String())
+            })
         })
     })
 
