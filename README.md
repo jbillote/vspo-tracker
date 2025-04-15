@@ -1,10 +1,7 @@
 # VSPO! Tracker
 
 VSPO! Tracker is a web application designed to track content creators across 
-YouTube and Twitch, including video uploads as well as live streams.
-
-VSPO! Tracker was developed for VSPO! content creators, but can be configured 
-via JSON configurations for any content creators.
+YouTube and Twitch, including video uploads and live streams.
 
 VSPO! Tracker uses the following technologies:
 
@@ -19,6 +16,7 @@ VSPO! Tracker uses the following technologies:
 - [Next.js](https://nextjs.org/)
 - [ElysiaJS Eden](https://elysiajs.com/eden/overview.html)
 - [Tailwind](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
 
 To run, VSPO! Tracker uses the [Bun](https://bun.sh) runtime as well as 
 [Turbo](https://turbo.build/) to run both backend and frontend apps at the same 
