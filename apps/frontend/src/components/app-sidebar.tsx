@@ -1,6 +1,6 @@
 'use server'
 
-import { api } from 'libs'
+import { API } from 'libs'
 import { ChevronRight, House } from 'lucide-react'
 import Link from 'next/link'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
@@ -8,7 +8,7 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel
 
 export async function AppSidebar() {
     // TODO: Error handling
-    const { data, error } = await api.api.streamers.get()
+    const { data, error } = await API.api.streamers.get()
 
     return (
         <Sidebar className="top-(--header-height) !h-[calc(100svh-var(--header-height))]">
