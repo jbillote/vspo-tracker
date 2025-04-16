@@ -1,1 +1,1 @@
-export { api } from './eden'
+export { API } from './eden'
