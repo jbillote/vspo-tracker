@@ -1,9 +1,9 @@
-// import './globals.css'
+export default async function Page({ params }: { params: Promise<{ streamer: string }> }) {
+    const { streamer } = await params
 
-export default function Page({ params }: { params: { streamer: string } }) {
     return (
         <h1 className="flex flex-row min-h-screen justify-center items-center text-4xl">
-            {decodeURIComponent(params.streamer)}
+            {decodeURIComponent(streamer)}
         </h1>
     )
 }
