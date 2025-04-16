@@ -17,13 +17,14 @@ class StreamerService {
     const streamerConfig = await Bun.file('./channels.json').json()
 
     const jp: string[] = []
-    streamerConfig['VSPO!'].JP.forEach((streamer: any) => {
-      jp.push(streamer.name)
-    })
-
     const en: string[] = []
-    streamerConfig['VSPO!'].EN.forEach((streamer: any) => {
-      en.push(streamer.name)
+
+    streamerConfig.streamers.forEach((streamer: any) => {
+      if (streamer.branch === 'JP') {
+        jp.push(streamer.name)
+      } else if (streamer.branch === 'EN') {
+        en.push(streamer.name)
+      }
     })
 
     return {
