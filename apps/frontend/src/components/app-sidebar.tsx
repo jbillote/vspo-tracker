@@ -2,26 +2,27 @@
 
 import { api } from 'libs'
 import { ChevronRight, House } from 'lucide-react'
+import Link from 'next/link'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from '@/components/ui/sidebar'
 
 export async function AppSidebar() {
-    // TODO: Error handling and move somewhere where it won't repeatedly get called
-    const { data, error} = await api.api.streamers.get()
+    // TODO: Error handling
+    const { data, error } = await api.api.streamers.get()
 
     return (
         <Sidebar className="top-(--header-height) !h-[calc(100svh-var(--header-height))]">
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuButton size="lg" asChild>
-                        <a href="/">
+                        <Link href="/">
                             <div className="flex aspect-square size-8 items-center justify-center  rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                                 <House className="size-4" />
                             </div>
                             <div className="grid flex-1 text-left text-sm leading-tight">
                                 <span className="truncate font-bold">Home</span>
                             </div>
-                        </a>
+                        </Link>
                     </SidebarMenuButton>
                 </SidebarMenu>
             </SidebarHeader>
@@ -32,9 +33,9 @@ export async function AppSidebar() {
                         <Collapsible asChild defaultOpen={true}>
                             <SidebarMenuItem>
                                 <SidebarMenuButton asChild tooltip="JP">
-                                    <a href="#">
+                                    <Link href="#">
                                         <span>JP</span>
-                                    </a>
+                                    </Link>
                                 </SidebarMenuButton>
                                 {data?.['VSPO!'].JP.length ? (
                                     <>
@@ -49,9 +50,9 @@ export async function AppSidebar() {
                                                 {data?.['VSPO!'].JP.map((streamer) => (
                                                     <SidebarMenuSubItem key={streamer}>
                                                         <SidebarMenuSubButton asChild>
-                                                            <a href={`/${streamer}`}>
+                                                            <Link href={`/${streamer}`}>
                                                                 <span>{streamer}</span>
-                                                            </a>
+                                                            </Link>
                                                         </SidebarMenuSubButton>
                                                     </SidebarMenuSubItem>
                                                 ))}
@@ -64,9 +65,9 @@ export async function AppSidebar() {
                         <Collapsible asChild defaultOpen={true}>
                             <SidebarMenuItem>
                                 <SidebarMenuButton asChild tooltip="EN">
-                                    <a href="#">
+                                    <Link href="#">
                                         <span>EN</span>
-                                    </a>
+                                    </Link>
                                 </SidebarMenuButton>
                                 {data?.['VSPO!'].EN.length ? (
                                     <>
@@ -81,9 +82,9 @@ export async function AppSidebar() {
                                                 {data?.['VSPO!'].EN.map((streamer) => (
                                                     <SidebarMenuSubItem key={streamer}>
                                                         <SidebarMenuSubButton asChild>
-                                                            <a href={`/${streamer}`}>
+                                                            <Link href={`/${streamer}`}>
                                                                 <span>{streamer}</span>
-                                                            </a>
+                                                            </Link>
                                                         </SidebarMenuSubButton>
                                                     </SidebarMenuSubItem>
                                                 ))}
