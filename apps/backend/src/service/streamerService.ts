@@ -1,38 +1,38 @@
-import { Logger } from 'pino'
+import { type Logger } from 'pino'
 
 class StreamerService {
-    private logger: Logger
+  private logger: Logger
 
-    public constructor(logger: Logger) {
-        this.logger = logger.child({ component: 'streamerService' })
+  public constructor(logger: Logger) {
+    this.logger = logger.child({ component: 'streamerService' })
+  }
+
+  public async getStreamerNames(): Promise<{
+    'VSPO!': {
+      JP: string[]
+      EN: string[]
     }
+  }> {
+    this.logger.info('Fetching streamers from JSON configuration')
+    const streamerConfig = await Bun.file('./channels.json').json()
 
-    public async getStreamerNames(): Promise<{
-        'VSPO!': {
-            'JP': string[],
-            'EN': string[]
-        }
-    }> {
-        this.logger.info('Fetching streamers from JSON configuration')
-        const streamerConfig = await Bun.file('./channels.json').json()
+    const jp: string[] = []
+    streamerConfig['VSPO!'].JP.forEach((streamer: any) => {
+      jp.push(streamer.name)
+    })
 
-        let jp: string[] = []
-        streamerConfig['VSPO!']['JP'].forEach((streamer: any) => {
-            jp.push(streamer['name'])
-        })
+    const en: string[] = []
+    streamerConfig['VSPO!'].EN.forEach((streamer: any) => {
+      en.push(streamer.name)
+    })
 
-        let en: string[] = []
-        streamerConfig['VSPO!']['EN'].forEach((streamer: any) => {
-            en.push(streamer['name'])
-        })
-
-        return {
-            'VSPO!': {
-                'JP': jp,
-                'EN': en
-            }
-        }
+    return {
+      'VSPO!': {
+        JP: jp,
+        EN: en,
+      },
     }
+  }
 }
 
 export { StreamerService }
