@@ -2,12 +2,10 @@ import { Elysia } from 'elysia'
 import { ChannelController } from './controllers/channelController'
 import { StreamerController } from './controllers/streamerController'
 import { VideoController } from './controllers/videoController'
-import { YouTubeController } from './controllers/youtubeController'
 
 const app = new Elysia()
   .use(ChannelController)
   .use(VideoController)
-  .use(YouTubeController)
   .use(StreamerController)
   .listen(3000)
 
