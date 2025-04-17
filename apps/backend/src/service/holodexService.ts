@@ -29,6 +29,7 @@ class HolodexService {
       photo: respJson.photo,
       banner: respJson.banner,
       twitter: respJson.twitter,
+      twitch: respJson.twitch,
     }
   }
 

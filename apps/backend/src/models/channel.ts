@@ -6,6 +6,7 @@ const channel = t.Object({
   photo: t.String(),
   banner: t.String(),
   twitter: t.String(),
+  twitch: t.Nullable(t.String()),
 })
 
 type Channel = typeof channel.static
