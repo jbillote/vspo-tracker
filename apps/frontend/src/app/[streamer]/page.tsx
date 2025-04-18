@@ -1,4 +1,5 @@
 import ChannelHeader from './components/header'
+import VideoList from './components/videoList'
 import { API } from 'libs'
 
 export default async function Page({ params }: { params: Promise<{ streamer: string }> }) {
@@ -17,6 +18,7 @@ export default async function Page({ params }: { params: Promise<{ streamer: str
             >
             </div>
             <ChannelHeader streamer={data!} />
+            <VideoList channelID={data!.id} />
         </div>
     )
 }
