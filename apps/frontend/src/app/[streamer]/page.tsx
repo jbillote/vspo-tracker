@@ -4,7 +4,7 @@ import { API } from 'libs'
 export default async function Page({ params }: { params: Promise<{ streamer: string }> }) {
     const { streamer } = await params
     // TODO: Error checking
-    const { data, error } = await API.api.channel({ member: streamer }).get()
+    const { data, error } = await API.api.v1.channel({ member: streamer }).get()
 
     return (
         <div>

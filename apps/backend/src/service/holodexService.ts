@@ -35,7 +35,7 @@ class HolodexService {
   }
 
   public async getVideos(channelId: string): Promise<Video[]> {
-    const url = `https://holodex.net/api/v2/channels/${channelId}/videos`
+    const url = `https://holodex.net/api/v2/channels/${channelId}/videos?include=live_info`
     this.logger.info(`Fetching videos for member with ID ${channelId}`)
     const resp: Response = await fetch(url, {
       headers: {
@@ -47,16 +47,53 @@ class HolodexService {
     const videos: Video[] = []
 
     respJson.forEach((video: any) => {
-      videos.push({
-        id: video.id,
-        title: video.title,
-        type: video.title,
-        publishedAt: video.published_at,
-        availableAt: video.available_at,
-        duration: video.duration,
-        status: video.status,
-        thumbnail: `https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`,
-      })
+      if (video.topic_id !== 'FreeChat') {
+        videos.push({
+          id: video.id,
+          title: video.title,
+          type: video.type,
+          publishedAt: video.published_at,
+          availableAt: video.available_at,
+          scheduledStart: video.start_scheduled,
+          duration: video.duration,
+          status: video.status,
+          thumbnail: `https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`,
+        })
+      }
+    })
+
+    return videos
+  }
+
+  public async getLive(): Promise<Video[]> {
+    this.logger.info('Fetching channel IDs from config')
+    const ids = await this.getYouTubeIDs()
+
+    const url = `https://holodex.net/api/v2/users/live?channels=${ids.join(',')}`
+    this.logger.info('Fetching live and upcoming streams')
+    const resp: Response = await fetch(url, {
+      headers: {
+        'x-apikey': this.apiKey,
+      },
+    })
+    const respJson = await resp.json()
+
+    const videos: Video[] = []
+
+    respJson.forEach((video: any) => {
+      if (video.topic_id !== 'FreeChat') {
+        videos.push({
+          id: video.id,
+          title: video.title,
+          type: video.type,
+          publishedAt: video.published_at,
+          availableAt: video.available_at,
+          scheduledStart: video.start_scheduled,
+          duration: video.duration,
+          status: video.status,
+          thumbnail: `https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`,
+        })
+      }
     })
 
     return videos
@@ -67,6 +104,17 @@ class HolodexService {
     return streamers.streamers
       .find((member: any) => member.name.toLowerCase() === decodeURIComponent(name.toLowerCase()))
       .youtube.toString()
+  }
+
+  private async getYouTubeIDs(): Promise<string[]> {
+    const streamers = await Bun.file('./channels.json').json()
+
+    const ids: string[] = []
+    streamers.streamers.forEach((streamer: any) => {
+      ids.push(streamer.youtube)
+    })
+
+    return ids
   }
 }
 

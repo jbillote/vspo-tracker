@@ -3,7 +3,7 @@ import { Logger } from 'middleware'
 import { channel } from '../models/channel'
 import { HolodexService } from '../service/holodexService'
 
-const ChannelController = new Elysia()
+const ChannelController = new Elysia({ prefix: '/api/v1/channel' })
   .use(Logger)
   .derive({ as: 'scoped' }, ({ log }) => {
     return {
@@ -12,7 +12,7 @@ const ChannelController = new Elysia()
     }
   })
   .get(
-    '/api/channel/:member',
+    '/:member',
     async ({ params: { member }, log, holodexService }) => {
       log.info(`Fetching channel information for member=${member}`)
       return await holodexService.getChannelInformation(member)

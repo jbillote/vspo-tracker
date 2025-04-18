@@ -3,7 +3,7 @@ import { Logger } from 'middleware'
 import { streamer } from '../models/streamer'
 import { StreamerService } from '../service/streamerService'
 
-const StreamerController = new Elysia()
+const StreamerController = new Elysia({ prefix: '/api/v1' })
   .use(Logger)
   .derive({ as: 'scoped' }, ({ log }) => {
     return {
@@ -12,7 +12,7 @@ const StreamerController = new Elysia()
     }
   })
   .get(
-    '/api/streamers',
+    '/streamers',
     async ({ log, streamerService }) => {
       log.info('Fetching streamer names')
       return await streamerService.getStreamerNames()

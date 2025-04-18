@@ -8,7 +8,7 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel
 
 export async function AppSidebar() {
     // TODO: Error handling
-    const { data, error } = await API.api.streamers.get()
+    const { data, error } = await API.api.v1.streamers.get()
 
     return (
         <Sidebar className="top-(--header-height) !h-[calc(100svh-var(--header-height))]">

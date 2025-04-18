@@ -6,6 +6,7 @@ const video = t.Object({
   type: t.String(),
   publishedAt: t.Date(),
   availableAt: t.Date(),
+  scheduledStart: t.Date(),
   duration: t.Number(),
   status: t.String(),
   thumbnail: t.String(),
