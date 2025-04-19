@@ -1,4 +1,5 @@
 import { env } from 'bun'
+import { DateTime } from 'luxon'
 import { type Logger } from 'pino'
 import { type Channel } from '../models/channel'
 import { type Video } from '../models/video'
@@ -82,7 +83,7 @@ class HolodexService {
     const videos: Video[] = []
 
     respJson.forEach((video: any) => {
-      if (video.topic_id !== 'FreeChat') {
+      if (video.topic_id !== 'FreeChat' && ids.includes(video.channel.id)) {
         videos.push({
           id: video.id,
           title: video.title,
@@ -98,7 +99,9 @@ class HolodexService {
       }
     })
 
-    return videos
+    return videos.sort((a: Video, b: Video) => {
+      return DateTime.fromISO(a.availableAt).toMillis() - DateTime.fromISO(b.availableAt).toMillis()
+    })
   }
 
   private async getYouTubeID(name: string): Promise<string> {
