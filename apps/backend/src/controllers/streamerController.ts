@@ -24,6 +24,9 @@ const StreamerController = new Elysia({ prefix: '/api/v1' })
           EN: t.Array(t.String()),
         }),
       }),
+      detail: {
+        tags: ['Channel'],
+      },
     },
   )
 

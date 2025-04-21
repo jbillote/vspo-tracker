@@ -22,6 +22,9 @@ const ChannelController = new Elysia({ prefix: '/api/v1/channel' })
         member: t.String(),
       }),
       response: channel,
+      detail: {
+        tags: ['Channel'],
+      },
     },
   )
 

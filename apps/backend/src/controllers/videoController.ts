@@ -26,6 +26,9 @@ const VideoController = new Elysia({ prefix: '/api/v1/videos' })
         limit: t.Optional(t.Number({ default: 20 })),
       }),
       response: t.Array(video),
+      detail: {
+        tags: ['Video'],
+      },
     },
   )
   .get(
@@ -40,6 +43,9 @@ const VideoController = new Elysia({ prefix: '/api/v1/videos' })
         limit: t.Optional(t.Number({ default: 20 })),
       }),
       response: t.Array(video),
+      detail: {
+        tags: ['Video'],
+      },
     },
   )
 
