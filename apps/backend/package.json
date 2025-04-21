@@ -5,9 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "bun run --watch src/index.ts",
-    "migrateDev": "bunx prisma migrate dev --name init",
-    "lint": "eslint --report-unused-disable-directives",
-    "lint:fix": "eslint --report-unused-disable-directives --fix"
+    "lint": "eslint --report-unused-disable-directives --fix"
   },
   "dependencies": {
     "@elysiajs/swagger": "^1.1.6",
@@ -29,8 +27,7 @@
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.2.6",
-    "prettier": "^3.5.3",
-    "prisma": "^6.1.0"
+    "prettier": "^3.5.3"
   },
   "module": "src/index.ts"
 }

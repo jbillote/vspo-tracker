@@ -35,7 +35,6 @@
         "eslint-plugin-import": "^2.31.0",
         "eslint-plugin-prettier": "^5.2.6",
         "prettier": "^3.5.3",
-        "prisma": "^6.1.0",
       },
     },
     "apps/frontend": {
