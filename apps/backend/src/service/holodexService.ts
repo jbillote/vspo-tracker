@@ -109,7 +109,9 @@ class HolodexService {
 
     for (let streamerNdx = 0; streamers.length; streamerNdx++) {
       for (let branchNdx = 0; streamers[streamerNdx].branches.length; branchNdx++) {
-        const member = streamers[streamerNdx].branches[branchNdx].members.find((member: any) => member.name.toLowerCase() === decodeURIComponent(name.toLowerCase()))
+        const member = streamers[streamerNdx].branches[branchNdx].members.find(
+          (member: any) => member.name.toLowerCase() === decodeURIComponent(name.toLowerCase()),
+        )
 
         if (member) {
           return member.youtube
@@ -117,7 +119,9 @@ class HolodexService {
       }
     }
 
-    throw new Error(`Could not find YouTube ID for member ${decodeURIComponent(name.toLowerCase())}`)
+    throw new Error(
+      `Could not find YouTube ID for member ${decodeURIComponent(name.toLowerCase())}`,
+    )
   }
 
   private async getYouTubeIDs(): Promise<string[]> {

@@ -1,6 +1,6 @@
 import { type Logger } from 'pino'
-import { Branch } from '../models/branch'
-import { Org } from '../models/org'
+import { type Branch } from '../models/branch'
+import { type Org } from '../models/org'
 
 class StreamerService {
   private logger: Logger
@@ -13,14 +13,14 @@ class StreamerService {
     this.logger.info('Fetching streamers from JSON configuration')
     const streamerConfig = await Bun.file('./channels.json').json()
 
-    let orgs: Org[] = []
+    const orgs: Org[] = []
     streamerConfig.forEach((org: any) => {
-      let branches: Branch[] = []
+      const branches: Branch[] = []
       org.branches.forEach((branch: any) => {
-        let members: { name: string }[] = []
+        const members: { name: string }[] = []
         branch.members.forEach((member: any) => {
           members.push({
-            name: member.name
+            name: member.name,
           })
         })
 
