@@ -20,14 +20,14 @@ export default async function VideoCard({ video }: { video: videoCardProps }) {
     const scheduledStart = video.scheduledStart ? DateTime.fromISO(video.scheduledStart) : null
 
     return (
-        <div className="m-1 bg-accent rounded-md inline-block">
+        <div className="m-1 bg-accent hover:bg-neutral-700 rounded-md inline-block">
             <Link href={`https://youtube.com/watch?v=${video.id}`}>
                 <div
                     style={{
                         // @ts-expect-error: TailwindCSS property, not built-in to React definitions
                         '--image-url': `url(${video.thumbnail})`
                     }}
-                    className="w-64 h-36 rounded-md bg-[image:var(--image-url)] bg-cover bg-center bg-no-repeat"
+                    className="w-68 h-36 rounded-md bg-[image:var(--image-url)] bg-cover bg-center bg-no-repeat"
                 >
                     {video.membersOnly ?
                         <div className="bg-black w-fit p-1 text-xs">
