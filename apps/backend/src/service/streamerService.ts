@@ -1,4 +1,6 @@
 import { type Logger } from 'pino'
+import { Branch } from '../models/branch'
+import { Org } from '../models/org'
 
 class StreamerService {
   private logger: Logger
@@ -7,32 +9,34 @@ class StreamerService {
     this.logger = logger.child({ component: 'streamerService' })
   }
 
-  public async getStreamerNames(): Promise<{
-    'VSPO!': {
-      JP: string[]
-      EN: string[]
-    }
-  }> {
+  public async getStreamerNames(): Promise<Org[]> {
     this.logger.info('Fetching streamers from JSON configuration')
     const streamerConfig = await Bun.file('./channels.json').json()
 
-    const jp: string[] = []
-    const en: string[] = []
+    let orgs: Org[] = []
+    streamerConfig.forEach((org: any) => {
+      let branches: Branch[] = []
+      org.branches.forEach((branch: any) => {
+        let members: { name: string }[] = []
+        branch.members.forEach((member: any) => {
+          members.push({
+            name: member.name
+          })
+        })
 
-    streamerConfig.streamers.forEach((streamer: any) => {
-      if (streamer.branch === 'JP') {
-        jp.push(streamer.name)
-      } else if (streamer.branch === 'EN') {
-        en.push(streamer.name)
-      }
+        branches.push({
+          name: branch.name,
+          members: members,
+        })
+      })
+
+      orgs.push({
+        name: org.name,
+        branches: branches,
+      })
     })
 
-    return {
-      'VSPO!': {
-        JP: jp,
-        EN: en,
-      },
-    }
+    return orgs
   }
 }
 

@@ -1,6 +1,6 @@
 import { Elysia, t } from 'elysia'
 import { Logger } from 'middleware'
-import { streamer } from '../models/streamer'
+import { org } from '../models/org'
 import { StreamerService } from '../service/streamerService'
 
 const StreamerController = new Elysia({ prefix: '/api/v1' })
@@ -18,12 +18,7 @@ const StreamerController = new Elysia({ prefix: '/api/v1' })
       return await streamerService.getStreamerNames()
     },
     {
-      response: t.Object({
-        'VSPO!': t.Object({
-          JP: t.Array(t.String()),
-          EN: t.Array(t.String()),
-        }),
-      }),
+      response: t.Array(org),
       detail: {
         tags: ['Channel'],
       },

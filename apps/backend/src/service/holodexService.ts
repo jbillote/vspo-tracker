@@ -106,17 +106,30 @@ class HolodexService {
 
   private async getYouTubeID(name: string): Promise<string> {
     const streamers = await Bun.file('./channels.json').json()
-    return streamers.streamers
-      .find((member: any) => member.name.toLowerCase() === decodeURIComponent(name.toLowerCase()))
-      .youtube.toString()
+
+    for (let streamerNdx = 0; streamers.length; streamerNdx++) {
+      for (let branchNdx = 0; streamers[streamerNdx].branches.length; branchNdx++) {
+        const member = streamers[streamerNdx].branches[branchNdx].members.find((member: any) => member.name.toLowerCase() === decodeURIComponent(name.toLowerCase()))
+
+        if (member) {
+          return member.youtube
+        }
+      }
+    }
+
+    throw new Error(`Could not find YouTube ID for member ${decodeURIComponent(name.toLowerCase())}`)
   }
 
   private async getYouTubeIDs(): Promise<string[]> {
     const streamers = await Bun.file('./channels.json').json()
 
     const ids: string[] = []
-    streamers.streamers.forEach((streamer: any) => {
-      ids.push(streamer.youtube)
+    streamers.forEach((org: any) => {
+      org.branches.forEach((branch: any) => {
+        branch.members.forEach((member: any) => {
+          ids.push(member.youtube)
+        })
+      })
     })
 
     return ids
