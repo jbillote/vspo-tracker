@@ -27,75 +27,47 @@ export async function AppSidebar() {
                 </SidebarMenu>
             </SidebarHeader>
             <SidebarContent>
-                <SidebarGroup>
-                    <SidebarGroupLabel>VSPO!</SidebarGroupLabel>
-                    <SidebarMenu>
-                        <Collapsible asChild defaultOpen={true}>
-                            <SidebarMenuItem>
-                                <SidebarMenuButton asChild tooltip="JP">
-                                    <Link href="#">
-                                        <span>JP</span>
-                                    </Link>
-                                </SidebarMenuButton>
-                                {data?.['VSPO!'].JP.length ? (
-                                    <>
-                                        <CollapsibleTrigger asChild>
-                                            <SidebarMenuAction className="data-[state=open]:rotate-90">
-                                                <ChevronRight />
-                                                <span className="sr-only">Toggle</span>
-                                            </SidebarMenuAction>
-                                        </CollapsibleTrigger>
-                                        <CollapsibleContent>
-                                            <SidebarMenuSub>
-                                                {data?.['VSPO!'].JP.map((streamer) => (
-                                                    <SidebarMenuSubItem key={streamer}>
-                                                        <SidebarMenuSubButton asChild>
-                                                            <Link href={`/${streamer}`}>
-                                                                <span>{streamer}</span>
-                                                            </Link>
-                                                        </SidebarMenuSubButton>
-                                                    </SidebarMenuSubItem>
-                                                ))}
-                                            </SidebarMenuSub>
-                                        </CollapsibleContent>
-                                    </>
-                                ): null}
-                            </SidebarMenuItem>
-                        </Collapsible>
-                        <Collapsible asChild defaultOpen={true}>
-                            <SidebarMenuItem>
-                                <SidebarMenuButton asChild tooltip="EN">
-                                    <Link href="#">
-                                        <span>EN</span>
-                                    </Link>
-                                </SidebarMenuButton>
-                                {data?.['VSPO!'].EN.length ? (
-                                    <>
-                                        <CollapsibleTrigger asChild>
-                                            <SidebarMenuAction className="data-[state=open]:rotate-90">
-                                                <ChevronRight />
-                                                <span className="sr-only">Toggle</span>
-                                            </SidebarMenuAction>
-                                        </CollapsibleTrigger>
-                                        <CollapsibleContent>
-                                            <SidebarMenuSub>
-                                                {data?.['VSPO!'].EN.map((streamer) => (
-                                                    <SidebarMenuSubItem key={streamer}>
-                                                        <SidebarMenuSubButton asChild>
-                                                            <Link href={`/${streamer}`}>
-                                                                <span>{streamer}</span>
-                                                            </Link>
-                                                        </SidebarMenuSubButton>
-                                                    </SidebarMenuSubItem>
-                                                ))}
-                                            </SidebarMenuSub>
-                                        </CollapsibleContent>
-                                    </>
-                                ): null}
-                            </SidebarMenuItem>
-                        </Collapsible>
-                    </SidebarMenu>
-                </SidebarGroup>
+                {data?.map((org) => (
+                    <SidebarGroup key={org.name}>
+                        <SidebarGroupLabel>{org.name}</SidebarGroupLabel>
+                        {org.branches.map((branch) => (
+                            <SidebarMenu key={branch.name}>
+                                <Collapsible asChild defaultOpen={true}>
+                                    <SidebarMenuItem>
+                                        <SidebarMenuButton asChild tooltip={branch.name}>
+                                            <Link href="#">
+                                                <span>{branch.name}</span>
+                                            </Link>
+                                        </SidebarMenuButton>
+                                        {branch.members.length ? (
+                                            <>
+                                                <CollapsibleTrigger asChild>
+                                                    <SidebarMenuAction className="data-[state=open]:rotate-90">
+                                                        <ChevronRight />
+                                                        <span className="sr-only">Toggle</span>
+                                                    </SidebarMenuAction>
+                                                </CollapsibleTrigger>
+                                                <CollapsibleContent>
+                                                    <SidebarMenuSub>
+                                                        {branch.members.map((member) => (
+                                                            <SidebarMenuSubItem key={member.name}>
+                                                                <SidebarMenuSubButton asChild>
+                                                                    <Link href={`/${member.name}`}>
+                                                                        <span>{member.name}</span>
+                                                                    </Link>
+                                                                </SidebarMenuSubButton>
+                                                            </SidebarMenuSubItem>
+                                                        ))}
+                                                    </SidebarMenuSub>
+                                                </CollapsibleContent>
+                                            </>
+                                        ) : null}
+                                    </SidebarMenuItem>
+                                </Collapsible>
+                            </SidebarMenu>
+                        ))}
+                    </SidebarGroup>
+                ))}
             </SidebarContent>
             <SidebarFooter></SidebarFooter>
         </Sidebar>
