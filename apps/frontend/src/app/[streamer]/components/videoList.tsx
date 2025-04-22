@@ -2,6 +2,7 @@
 
 import VideoCard from '@/components/videoCard'
 import { API } from 'libs'
+import { DateTime } from 'luxon'
 
 export default async function VideoList({ channelID }: { channelID: string }) {
     // TODO: Error checking
@@ -10,6 +11,7 @@ export default async function VideoList({ channelID }: { channelID: string }) {
     return (
         <div className="flex flex-wrap p-2 justify-center">
             {data!.map((video) => (
+                video.scheduledStart && DateTime.fromISO(video.scheduledStart).diffNow('days').days < 2 &&
                 <VideoCard video={video} key={video.id} />
             ))}
         </div>
