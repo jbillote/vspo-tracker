@@ -3,6 +3,7 @@
 import { AppSidebar } from "@/components/appSidebar"
 import { SiteHeader } from "@/components/siteHeader"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
+import { API } from 'libs'
 import "./globals.css"
 
 export default async function RootLayout({
@@ -10,6 +11,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { data: streamers, error } = await API.api.v1.streamers.get()
+
+  if (error) {
+    throw new Error()
+  }
+
   return (
     <html lang="en" className="dark">
       <body>
@@ -17,7 +24,7 @@ export default async function RootLayout({
           <SidebarProvider className="flex flex-col">
             <SiteHeader />
             <div className="flex flex-1">
-              <AppSidebar />
+              <AppSidebar streamers={streamers!} />
               <SidebarInset>
                 {children}
               </SidebarInset>

@@ -2,8 +2,10 @@ import { API } from 'libs'
 import VideoList from '@/components/videoList'
 
 export default async function Home() {
-  // TODO: Error checking
   const { data, error } = await API.api.v1.videos.live.get({ query: {} })
+  if (error) {
+    throw new Error()
+  }
 
   return (
     <div>

@@ -1,15 +1,21 @@
 'use server'
 
-import { API } from 'libs'
 import { ChevronRight, House } from 'lucide-react'
 import Link from 'next/link'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from '@/components/ui/sidebar'
 
-export async function AppSidebar() {
-    // TODO: Error handling
-    const { data, error } = await API.api.v1.streamers.get()
+type sidebarProps = {
+    name: string,
+    branches: {
+        name: string,
+        members: {
+            name: string
+        }[]
+    }[]
+}
 
+export async function AppSidebar({ streamers }: { streamers: sidebarProps[] }) {
     return (
         <Sidebar className="top-(--header-height) !h-[calc(100svh-var(--header-height))]">
             <SidebarHeader>
@@ -27,7 +33,7 @@ export async function AppSidebar() {
                 </SidebarMenu>
             </SidebarHeader>
             <SidebarContent>
-                {data?.map((org) => (
+                {streamers.map((org) => (
                     <SidebarGroup key={org.name}>
                         <SidebarGroupLabel>{org.name}</SidebarGroupLabel>
                         {org.branches.map((branch) => (

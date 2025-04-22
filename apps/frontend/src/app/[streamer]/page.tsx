@@ -1,12 +1,21 @@
+'use server'
+
 import ChannelHeader from './components/header'
 import VideoList from '@/components/videoList'
 import { API } from 'libs'
 
 export default async function Page({ params }: { params: Promise<{ streamer: string }> }) {
     const { streamer } = await params
-    // TODO: Error checking
+
     const { data: channel, error: channelError } = await API.api.v1.channel({ member: streamer }).get()
+    if (channelError) {
+        throw new Error()
+    }
+
     const { data: videos, error: videosError } = await API.api.v1.videos({ channelID: channel!.id }).get({ query: {} })
+    if (videosError) {
+        throw new Error()
+    }
 
     return (
         <div>
