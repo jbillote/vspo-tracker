@@ -1,5 +1,10 @@
 # VSPO! Tracker
 
+<h1 align="center">
+    <img src="https://raw.githubusercontent.com/jbillote/vspo-tracker/refs/heads/main/.github/screenshots/home.png" alt="VSPO! Tracker Home">
+    <img src="https://raw.githubusercontent.com/jbillote/vspo-tracker/refs/heads/main/.github/screenshots/channel.jpg" alt="VSPO! Tracker Channel">
+</h1>
+
 VSPO! Tracker is a web application designed to track content creators across 
 YouTube and Twitch, including video uploads and live streams.
 
@@ -7,9 +12,7 @@ VSPO! Tracker uses the following technologies:
 
 ## Backend
 - TypeScript
-- SQLite
 - [ElysiaJS](https://elysiajs.com/)
-- [Prisma](https://www.prisma.io/)
 
 ## Frontend
 - TypeScript
@@ -36,3 +39,15 @@ bun dev
 
 This will run both backend and frontend apps at the same time. You can also run 
 them independently by running the same command from their respective directory.
+
+Running the application in this way, due to both `dev` scripts being run, will 
+enable hotswapping for both applications; changes made to source files for both 
+applications will automatically reload the respective server and any changes will 
+be immediately apparent.
+
+## Known Issues and Todos
+- Implement unit tests
+- Implement caching using sqlite, including Turso for live access
+- Responsive design for better experiences on different form factors
+- Return more specific errors on backend and handle them appropriately on frontend
+- Embed YouTube players to implement multiwatching
