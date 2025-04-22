@@ -107,8 +107,8 @@ class HolodexService {
   private async getYouTubeID(name: string): Promise<string> {
     const streamers = await Bun.file('./channels.json').json()
 
-    for (let streamerNdx = 0; streamers.length; streamerNdx++) {
-      for (let branchNdx = 0; streamers[streamerNdx].branches.length; branchNdx++) {
+    for (let streamerNdx = 0; streamerNdx < streamers.length; streamerNdx++) {
+      for (let branchNdx = 0; branchNdx < streamers[streamerNdx].branches.length; branchNdx++) {
         const member = streamers[streamerNdx].branches[branchNdx].members.find(
           (member: any) => member.name.toLowerCase() === decodeURIComponent(name.toLowerCase()),
         )
