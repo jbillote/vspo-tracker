@@ -1,16 +1,25 @@
 'use server'
 
 import VideoCard from '@/components/videoCard'
-import { API } from 'libs'
 import { DateTime } from 'luxon'
 
-export default async function VideoList({ channelID }: { channelID: string }) {
-    // TODO: Error checking
-    const { data, error } = await API.api.v1.videos({ channelID: channelID }).get({ query: {} })
+type videoListProps = {
+    id: string,
+    title: string,
+    type: string,
+    membersOnly: boolean,
+    publishedAt: string,
+    availableAt: string,
+    scheduledStart?: string,
+    duration: number,
+    status: string,
+    thumbnail: string
+}
 
+export default async function VideoList({ videos }: { videos: videoListProps[] }) {
     return (
         <div className="flex flex-wrap p-2 justify-center">
-            {data!.map((video) => (
+            {videos.map((video) => (
                 video.scheduledStart && DateTime.fromISO(video.scheduledStart).diffNow('days').days < 2 &&
                 <VideoCard video={video} key={video.id} />
             ))}

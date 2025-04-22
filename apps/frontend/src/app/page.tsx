@@ -1,6 +1,5 @@
 import { API } from 'libs'
-import VideoCard from '@/components/videoCard'
-import { DateTime } from 'luxon'
+import VideoList from '@/components/videoList'
 
 export default async function Home() {
   // TODO: Error checking
@@ -10,10 +9,7 @@ export default async function Home() {
     <div>
       <h1 className="text-4xl font-bold mt-2 text-center">Live and Upcoming</h1>
       <div className="flex flex-wrap p-2 justify-center">
-        {data!.map((video) => (
-          video.scheduledStart && DateTime.fromISO(video.scheduledStart).diffNow('days').days < 2 &&
-          <VideoCard video={video} key={video.id} />
-        ))}
+        <VideoList videos={data!} />
       </div>
     </div>
   )
