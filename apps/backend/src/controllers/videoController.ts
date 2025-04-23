@@ -1,4 +1,4 @@
-import { Elysia, t } from 'elysia'
+import { Elysia, InternalServerError, t } from 'elysia'
 import { Logger } from 'middleware'
 import { video } from '../models/video'
 import { HolodexService } from '../service/holodexService'
@@ -10,6 +10,9 @@ const VideoController = new Elysia({ prefix: '/api/v1/videos' })
       holodexService: new HolodexService(log),
       log: log.child({ component: 'videoController' }),
     }
+  })
+  .onError(({ requestID }) => {
+    return new InternalServerError(requestID?.toString())
   })
   .get(
     '/:channelID',

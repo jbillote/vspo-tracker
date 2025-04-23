@@ -1,4 +1,4 @@
-import { Elysia, t } from 'elysia'
+import { Elysia, InternalServerError, t } from 'elysia'
 import { Logger } from 'middleware'
 import { org } from '../models/org'
 import { StreamerService } from '../service/streamerService'
@@ -10,6 +10,9 @@ const StreamerController = new Elysia({ prefix: '/api/v1' })
       streamerService: new StreamerService(log),
       log: log.child({ component: 'streamerController' }),
     }
+  })
+  .onError(({ requestID }) => {
+    return new InternalServerError(requestID?.toString())
   })
   .get(
     '/streamers',
