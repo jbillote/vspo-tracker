@@ -32,23 +32,24 @@ export default async function VideoCard({ video }: { video: videoCardProps }) {
                 }}
                 className="w-68 h-36 rounded-md bg-[image:var(--image-url)] bg-cover bg-center bg-no-repeat"
             >
-                {video.membersOnly ?
-                    <div className="bg-black w-fit p-1 text-xs">
-                        {video.membersOnly ? 'Members Only' : null}
-                    </div>
-                    : null}
+                {video.status === 'live' && (
+                    <div className="bg-red-500 w-fit p-1 text-xs font-bold">LIVE!</div>
+                )}
+                {video.membersOnly && (
+                    <div className="bg-black w-fit p-1 text-xs">Members Only</div>
+                )}
             </div>
             <div className="my-2 mx-2">
                 <span className="inline-block max-w-64 font-bold text-sm line-clamp-2 truncate">
                     {video.title}
                 </span>
-                {video.streamer ?
+                {video.streamer && (
                     <Link href={`https://youtube.com/channel/${video.streamer.id}`} className="relative z-10 w-fit">
                         <div className="text-sm hover:text-sky-300 w-fit">
                             {video.streamer.name}
                         </div>
                     </Link>
-                    : null}
+                )}
                 <div className="max-w-64 text-sm">
                     {scheduledStart?.toRelative()}
                 </div>
