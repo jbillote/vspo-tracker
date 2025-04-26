@@ -14,7 +14,7 @@ type videoListProps = {
     duration: number,
     status: string,
     thumbnail: string,
-    streamer: {
+    streamer?: {
         id: string,
         name: string,
     },

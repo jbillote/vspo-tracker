@@ -14,7 +14,7 @@ type videoCardProps = {
     duration: number,
     status: string,
     thumbnail: string,
-    streamer: {
+    streamer?: {
         id: string,
         name: string,
     },
@@ -42,11 +42,13 @@ export default async function VideoCard({ video }: { video: videoCardProps }) {
                 <span className="inline-block max-w-64 font-bold text-sm line-clamp-2 truncate">
                     {video.title}
                 </span>
-                <Link href={`https://youtube.com/channel/${video.streamer.id}`} className="relative z-10 w-fit">
-                    <div className="text-sm hover:text-sky-300 w-fit">
-                        {video.streamer.name}
-                    </div>
-                </Link>
+                {video.streamer ?
+                    <Link href={`https://youtube.com/channel/${video.streamer.id}`} className="relative z-10 w-fit">
+                        <div className="text-sm hover:text-sky-300 w-fit">
+                            {video.streamer.name}
+                        </div>
+                    </Link>
+                    : null}
                 <div className="max-w-64 text-sm">
                     {scheduledStart?.toRelative()}
                 </div>

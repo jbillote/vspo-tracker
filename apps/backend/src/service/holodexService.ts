@@ -61,10 +61,6 @@ class HolodexService {
           duration: video.duration,
           status: video.status,
           thumbnail: `https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`,
-          streamer: {
-            id: video.channel.id,
-            name: video.channel.english_name,
-          },
         })
       }
     })
