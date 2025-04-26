@@ -8,7 +8,6 @@ export default async function Page({ params }: { params: Promise<{ streamer: str
 
     const { data: channel, error: channelError } = await API.api.v1.channel({ member: streamer }).get()
     if (channelError) {
-        console.log(channelError.status)
         if (channelError.status === 404) {
             notFound()
         } else {
@@ -32,7 +31,29 @@ export default async function Page({ params }: { params: Promise<{ streamer: str
             >
             </div>
             <ChannelHeader streamer={channel!} />
-            <VideoList videos={videos!} />
+            {videos.live.length > 0 && (
+                <>
+                    <h1 className="text-4xl font-bold mt-2 text-center">Live</h1>
+                    <VideoList videos={videos!.live} />
+                </>
+            )}
+            {videos.upcoming.length > 0 && (
+                <>
+                    <h1 className="text-4xl font-bold mt-2 text-center">Upcoming</h1>
+                    <VideoList videos={videos!.upcoming} />
+                </>
+            )}
+            {videos.past.length > 0 && (
+                <>
+                    <h1 className="text-4xl font-bold mt-2 text-center">Past</h1>
+                    <VideoList videos={videos!.past} />
+                </>
+            )}
+            {videos.live.length <= 0 && videos.upcoming.length <= 0 && videos.past.length <= 0 && (
+                <div className="flex flex-col min-h-screen justify-center items-center">
+                    <h1 className="text-4xl">No videos or streams (yet)!</h1>
+                </div>
+            )}
         </div>
     )
 }

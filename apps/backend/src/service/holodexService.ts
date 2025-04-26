@@ -36,7 +36,11 @@ class HolodexService {
     }
   }
 
-  public async getVideos(channelId: string): Promise<Video[]> {
+  public async getVideos(channelId: string): Promise<{
+    live: Video[],
+    upcoming: Video[],
+    past: Video[],
+  }> {
     const url = `https://holodex.net/api/v2/channels/${channelId}/videos?include=live_info`
     this.logger.info(`Fetching videos for member with ID ${channelId}`)
     const resp: Response = await fetch(url, {
@@ -46,11 +50,13 @@ class HolodexService {
     })
     const respJson = await resp.json()
 
-    const videos: Video[] = []
+    const live: Video[] = []
+    const upcoming: Video[] = []
+    const past: Video[] = []
 
     respJson.forEach((video: any) => {
       if (video.topic_id !== 'FreeChat') {
-        videos.push({
+        const v: Video = {
           id: video.id,
           title: video.title,
           type: video.type,
@@ -61,11 +67,29 @@ class HolodexService {
           duration: video.duration,
           status: video.status,
           thumbnail: `https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`,
-        })
+        }
+
+        if (video.status === 'live') {
+          live.push(v)
+        } else if (video.status === 'upcoming') {
+          upcoming.push(v)
+        } else if (video.status === 'past') {
+          past.push(v)
+        }
       }
     })
 
-    return videos
+    return {
+      live: live.sort((a: Video, b: Video) => {
+        return DateTime.fromISO(a.availableAt).toMillis() - DateTime.fromISO(b.availableAt).toMillis()
+      }),
+      upcoming: upcoming.sort((a: Video, b: Video) => {
+        return DateTime.fromISO(a.availableAt).toMillis() - DateTime.fromISO(b.availableAt).toMillis()
+      }),
+      past: past.sort((a: Video, b: Video) => {
+        return DateTime.fromISO(b.availableAt).toMillis() - DateTime.fromISO(a.availableAt).toMillis()
+      }),
+    }
   }
 
   public async getLive(): Promise<{
