@@ -4,7 +4,7 @@ import VideoList from '@/components/videoList'
 export default async function Home() {
   const { data, error } = await API.api.v1.videos.live.get({ query: {} })
   if (error) {
-    throw new Error()
+    throw new Error(error.value.message)
   }
 
   return (

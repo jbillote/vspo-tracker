@@ -1,4 +1,5 @@
 import { env } from 'bun'
+import { NotFoundError } from 'elysia'
 import { DateTime } from 'luxon'
 import { type Logger } from 'pino'
 import { type Channel } from '../models/channel'
@@ -60,6 +61,10 @@ class HolodexService {
           duration: video.duration,
           status: video.status,
           thumbnail: `https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`,
+          streamer: {
+            id: video.channel.id,
+            name: video.channel.english_name,
+          },
         })
       }
     })
@@ -95,6 +100,10 @@ class HolodexService {
           duration: video.duration,
           status: video.status,
           thumbnail: `https://i.ytimg.com/vi/${video.id}/maxresdefault.jpg`,
+          streamer: {
+            id: video.channel.id,
+            name: video.channel.english_name,
+          },
         })
       }
     })
@@ -119,8 +128,8 @@ class HolodexService {
       }
     }
 
-    throw new Error(
-      `Could not find YouTube ID for member ${decodeURIComponent(name.toLowerCase())}`,
+    throw new NotFoundError(
+      `Could not find YouTubeID for member ${decodeURIComponent(name.toLowerCase())}`,
     )
   }
 

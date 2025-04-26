@@ -13,7 +13,11 @@ type videoListProps = {
     scheduledStart?: string,
     duration: number,
     status: string,
-    thumbnail: string
+    thumbnail: string,
+    streamer: {
+        id: string,
+        name: string,
+    },
 }
 
 export default async function VideoList({ videos }: { videos: videoListProps[] }) {

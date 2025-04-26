@@ -11,6 +11,10 @@ const video = t.Object({
   duration: t.Number(),
   status: t.String(),
   thumbnail: t.String(),
+  streamer: t.Object({
+    id: t.String(),
+    name: t.String(),
+  }),
 })
 
 type Video = typeof video.static

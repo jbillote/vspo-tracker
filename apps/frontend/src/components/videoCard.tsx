@@ -14,38 +14,44 @@ type videoCardProps = {
     duration: number,
     status: string,
     thumbnail: string,
+    streamer: {
+        id: string,
+        name: string,
+    },
 }
 
 export default async function VideoCard({ video }: { video: videoCardProps }) {
     const scheduledStart = video.scheduledStart ? DateTime.fromISO(video.scheduledStart) : null
 
     return (
-        <div className="m-1 bg-accent hover:bg-neutral-700 rounded-md inline-block">
-            <Link href={`https://youtube.com/watch?v=${video.id}`}>
-                <div
-                    style={{
-                        // @ts-expect-error: TailwindCSS property, not built-in to React definitions
-                        '--image-url': `url(${video.thumbnail})`
-                    }}
-                    className="w-68 h-36 rounded-md bg-[image:var(--image-url)] bg-cover bg-center bg-no-repeat"
-                >
-                    {video.membersOnly ?
-                        <div className="bg-black w-fit p-1 text-xs">
-                            {video.membersOnly ? 'Members Only' : null}
-                        </div>
-                        : null}
-                </div>
-            </Link>
+        <div className="m-1 bg-accent hover:bg-neutral-700 rounded-md inline-block relative">
+            <div
+                style={{
+                    // @ts-expect-error: TailwindCSS property, not built-in to React definitions
+                    '--image-url': `url(${video.thumbnail})`
+                }}
+                className="w-68 h-36 rounded-md bg-[image:var(--image-url)] bg-cover bg-center bg-no-repeat"
+            >
+                {video.membersOnly ?
+                    <div className="bg-black w-fit p-1 text-xs">
+                        {video.membersOnly ? 'Members Only' : null}
+                    </div>
+                    : null}
+            </div>
             <div className="my-2 mx-2">
-                <Link href={`https://youtube.com/watch?v=${video.id}`}>
-                    <span className="inline-block max-w-64 font-bold text-sm line-clamp-2 truncate">
-                        {video.title}
-                    </span>
-                    <div className="max-w-64 text-sm">
-                        {scheduledStart?.toRelative()}
+                <span className="inline-block max-w-64 font-bold text-sm line-clamp-2 truncate">
+                    {video.title}
+                </span>
+                <Link href={`https://youtube.com/channel/${video.streamer.id}`} className="relative z-10 w-fit">
+                    <div className="text-sm hover:text-sky-300 w-fit">
+                        {video.streamer.name}
                     </div>
                 </Link>
+                <div className="max-w-64 text-sm">
+                    {scheduledStart?.toRelative()}
+                </div>
             </div>
+            <Link href={`https://youtube.com/watch?v=${video.id}`} className="absolute inset-0" />
         </div>
     )
 }
