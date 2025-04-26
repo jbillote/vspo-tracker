@@ -45,7 +45,10 @@ const VideoController = new Elysia({ prefix: '/api/v1/videos' })
         offset: t.Optional(t.Number({ default: 0 })),
         limit: t.Optional(t.Number({ default: 20 })),
       }),
-      response: t.Array(video),
+      response: t.Object({
+        live: t.Array(video),
+        upcoming: t.Array(video),
+      }),
       detail: {
         tags: ['Video'],
       },

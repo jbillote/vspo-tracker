@@ -68,7 +68,10 @@ class HolodexService {
     return videos
   }
 
-  public async getLive(): Promise<Video[]> {
+  public async getLive(): Promise<{
+    live: Video[],
+    upcoming: Video[],
+  }> {
     this.logger.info('Fetching channel IDs from config')
     const ids = await this.getYouTubeIDs()
 
@@ -81,11 +84,12 @@ class HolodexService {
     })
     const respJson = await resp.json()
 
-    const videos: Video[] = []
+    const live: Video[] = []
+    const upcoming: Video[] = []
 
     respJson.forEach((video: any) => {
       if (video.topic_id !== 'FreeChat' && ids.includes(video.channel.id)) {
-        videos.push({
+        const v: Video = {
           id: video.id,
           title: video.title,
           type: video.type,
@@ -100,13 +104,24 @@ class HolodexService {
             id: video.channel.id,
             name: video.channel.english_name,
           },
-        })
+        }
+
+        if (video.status === 'live') {
+          live.push(v)
+        } else {
+          upcoming.push(v)
+        }
       }
     })
 
-    return videos.sort((a: Video, b: Video) => {
-      return DateTime.fromISO(a.availableAt).toMillis() - DateTime.fromISO(b.availableAt).toMillis()
-    })
+    return {
+      live: live.sort((a: Video, b: Video) => {
+        return DateTime.fromISO(a.availableAt).toMillis() - DateTime.fromISO(b.availableAt).toMillis()
+      }),
+      upcoming: upcoming.sort((a: Video, b: Video) => {
+        return DateTime.fromISO(a.availableAt).toMillis() - DateTime.fromISO(b.availableAt).toMillis()
+      }),
+    }
   }
 
   private async getYouTubeID(name: string): Promise<string> {

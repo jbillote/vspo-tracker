@@ -9,9 +9,13 @@ export default async function Home() {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold mt-2 text-center">Live and Upcoming</h1>
+      <h1 className="text-4xl font-bold mt-2 text-center">Live</h1>
       <div className="flex flex-wrap p-2 justify-center">
-        <VideoList videos={data!} />
+        <VideoList videos={data!.live} />
+      </div>
+      <h1 className="text-4xl font-bold mt-2 text-center">Upcoming</h1>
+      <div className="flex flex-wrap p-2 justify-center">
+        <VideoList videos={data!.upcoming} />
       </div>
     </div>
   )
