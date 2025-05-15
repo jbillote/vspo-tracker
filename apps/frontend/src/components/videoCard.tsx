@@ -40,7 +40,7 @@ export default async function VideoCard({ video }: { video: videoCardProps }) {
                 )}
             </div>
             <div className="my-2 mx-2">
-                <span className="inline-block max-w-64 font-bold text-sm line-clamp-2 truncate">
+                <span className="inline-block max-w-64 font-bold text-sm line-clamp-2 truncate relative z-10 cursor-pointer select-none" title={video.title}>
                     {video.title}
                 </span>
                 {video.streamer && (
