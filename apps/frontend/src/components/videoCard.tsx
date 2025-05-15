@@ -44,11 +44,11 @@ export default async function VideoCard({ video }: { video: videoCardProps }) {
                     {video.title}
                 </span>
                 {video.streamer && (
-                    <Link href={`https://youtube.com/channel/${video.streamer.id}`} className="relative z-10 w-fit">
-                        <div className="text-sm hover:text-sky-300 w-fit">
+                    <div className="text-sm hover:text-sky-300 w-fit">
+                        <Link href={`https://youtube.com/channel/${video.streamer.id}`} className="relative z-10 w-fit">
                             {video.streamer.name}
-                        </div>
-                    </Link>
+                        </Link>
+                    </div>
                 )}
                 <div className="max-w-64 text-sm">
                     {(video.status === 'live' ? 'Started ' : '') + scheduledStart?.toRelative()}
