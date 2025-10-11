@@ -4,7 +4,7 @@ import VideoCard from '@/components/videoCard'
 import { DateTime } from 'luxon'
 
 type videoListProps = {
-    id: string,
+    url: string,
     title: string,
     type: string,
     membersOnly: boolean,
@@ -25,7 +25,7 @@ export default async function VideoList({ videos }: { videos: videoListProps[] }
         <div className="flex flex-wrap p-2 justify-center">
             {videos.map((video) => (
                 video.scheduledStart && DateTime.fromISO(video.scheduledStart).diffNow('days').days < 2 &&
-                <VideoCard video={video} key={video.id} />
+                <VideoCard video={video} key={video.url} />
             ))}
         </div>
     )

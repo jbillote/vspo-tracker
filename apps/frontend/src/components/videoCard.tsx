@@ -4,7 +4,7 @@ import { DateTime } from 'luxon'
 import Link from 'next/link'
 
 type videoCardProps = {
-    id: string,
+    url: string,
     title: string,
     type: string,
     membersOnly: boolean,
@@ -54,7 +54,7 @@ export default async function VideoCard({ video }: { video: videoCardProps }) {
                     {(video.status === 'live' ? 'Started ' : '') + scheduledStart?.toRelative()}
                 </div>
             </div>
-            <Link href={`https://youtube.com/watch?v=${video.id}`} className="absolute inset-0" />
+            <Link href={video.url} className="absolute inset-0" />
         </div>
     )
 }

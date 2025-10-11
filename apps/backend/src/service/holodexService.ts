@@ -41,8 +41,9 @@ class HolodexService {
     upcoming: Video[],
     past: Video[],
   }> {
-    const url = `https://holodex.net/api/v2/channels/${channelId}/videos?include=live_info`
+    const url = `https://holodex.net/api/v2/channels/${channelId}/videos?include=live_info&includePlaceholder=true`
     this.logger.info(`Fetching videos for member with ID ${channelId}`)
+    this.logger.info(url)
     const resp: Response = await fetch(url, {
       headers: {
         'x-apikey': this.apiKey,
@@ -57,7 +58,7 @@ class HolodexService {
     respJson.forEach((video: any) => {
       if (video.topic_id !== 'FreeChat') {
         const v: Video = {
-          id: video.id,
+          url: `https://youtube.com/watch?v=${video.id}`,
           title: video.title,
           type: video.type,
           membersOnly: video.topic_id === 'membersonly',
@@ -99,7 +100,7 @@ class HolodexService {
     this.logger.info('Fetching channel IDs from config')
     const ids = await this.getYouTubeIDs()
 
-    const url = `https://holodex.net/api/v2/users/live?channels=${ids.join(',')}`
+    const url = `https://holodex.net/api/v2/users/live?channels=${ids.join(',')}&includePlaceholder=true`
     this.logger.info('Fetching live and upcoming streams')
     const resp: Response = await fetch(url, {
       headers: {
@@ -112,9 +113,13 @@ class HolodexService {
     const upcoming: Video[] = []
 
     respJson.forEach((video: any) => {
-      if (video.topic_id !== 'FreeChat' && ids.includes(video.channel.id)) {
+      if (video.type === 'placeholder') {
+        if (video.placeholderType === 'external-stream' && ids.includes(video.channel.id)) {
+          this.logger.info(video)
+        }
+      } else if (video.topic_id !== 'FreeChat' && ids.includes(video.channel.id)) {
         const v: Video = {
-          id: video.id,
+          url: `https://youtube.com/watch?v=${video.id}`,
           title: video.title,
           type: video.type,
           membersOnly: video.topic_id === 'membersonly',

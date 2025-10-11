@@ -1,7 +1,7 @@
 import { t } from 'elysia'
 
 const video = t.Object({
-  id: t.String(),
+  url: t.String(),
   title: t.String(),
   type: t.String(),
   membersOnly: t.Boolean({ default: false }),
