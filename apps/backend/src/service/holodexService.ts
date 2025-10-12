@@ -61,6 +61,7 @@ class HolodexService {
           url: `https://youtube.com/watch?v=${video.id}`,
           title: video.title,
           type: video.type,
+          videoSource: 'youtube',
           membersOnly: video.topic_id === 'membersonly',
           publishedAt: video.published_at,
           availableAt: video.available_at,
@@ -115,13 +116,32 @@ class HolodexService {
     respJson.forEach((video: any) => {
       if (video.type === 'placeholder') {
         if (video.placeholderType === 'external-stream' && ids.includes(video.channel.id)) {
-          this.logger.info(video)
+          const v: Video = {
+            url: video.link,
+            title: video.title,
+            type: video.type,
+            videoSource: 'twitch',
+            membersOnly: false,
+            publishedAt: video.start_actual,
+            availableAt: video.start_actual,
+            scheduledStart: video.start_actual,
+            duration: video.duration,
+            status: video.status,
+            thumbnail: video.thumbnail,
+            streamer: {
+              id: video.channel.id,
+              name: video.channel.english_name
+            }
+          }
+          live.push(v)
+          this.logger.info(v)
         }
       } else if (video.topic_id !== 'FreeChat' && ids.includes(video.channel.id)) {
         const v: Video = {
           url: `https://youtube.com/watch?v=${video.id}`,
           title: video.title,
           type: video.type,
+          videoSource: 'youtube',
           membersOnly: video.topic_id === 'membersonly',
           publishedAt: video.published_at,
           availableAt: video.available_at,

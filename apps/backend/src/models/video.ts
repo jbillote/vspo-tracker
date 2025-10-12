@@ -4,6 +4,7 @@ const video = t.Object({
   url: t.String(),
   title: t.String(),
   type: t.String(),
+  videoSource: t.UnionEnum(['youtube', 'twitch']),
   membersOnly: t.Boolean({ default: false }),
   publishedAt: t.String(),
   availableAt: t.String(),

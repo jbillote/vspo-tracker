@@ -7,6 +7,7 @@ type videoListProps = {
     url: string,
     title: string,
     type: string,
+    videoSource: string,
     membersOnly: boolean,
     publishedAt: string,
     availableAt: string,

@@ -7,6 +7,7 @@ type videoCardProps = {
     url: string,
     title: string,
     type: string,
+    videoSource: string,
     membersOnly: boolean,
     publishedAt: string,
     availableAt: string,
@@ -23,38 +24,72 @@ type videoCardProps = {
 export default async function VideoCard({ video }: { video: videoCardProps }) {
     const scheduledStart = video.scheduledStart ? DateTime.fromISO(video.scheduledStart) : null
 
-    return (
-        <div className="m-1 bg-accent hover:bg-neutral-700 rounded-md inline-block relative">
-            <div
-                style={{
-                    // @ts-expect-error: TailwindCSS property, not built-in to React definitions
-                    '--image-url': `url(${video.thumbnail})`
-                }}
-                className="w-68 h-36 rounded-md bg-[image:var(--image-url)] bg-cover bg-center bg-no-repeat"
-            >
-                {video.status === 'live' && (
-                    <div className="bg-red-500 w-fit p-1 text-xs font-bold">LIVE!</div>
-                )}
-                {video.membersOnly && (
-                    <div className="bg-black w-fit p-1 text-xs">Members Only</div>
-                )}
-            </div>
-            <div className="my-2 mx-2">
-                <span className="inline-block max-w-64 font-bold text-sm line-clamp-2 truncate relative z-10 cursor-pointer select-none" title={video.title}>
-                    {video.title}
-                </span>
-                {video.streamer && (
-                    <div className="text-sm hover:text-sky-300 w-fit">
-                        <Link href={`https://youtube.com/channel/${video.streamer.id}`} className="relative z-10 w-fit">
-                            {video.streamer.name}
-                        </Link>
-                    </div>
-                )}
-                <div className="max-w-64 text-sm">
-                    {(video.status === 'live' ? 'Started ' : '') + scheduledStart?.toRelative()}
+    if (video.videoSource === 'youtube') {
+        return (
+            <div className="m-1 bg-accent hover:bg-neutral-700 rounded-md inline-block relative">
+                <div
+                    style={{
+                        // @ts-expect-error: TailwindCSS property, not built-in to React definitions
+                        '--image-url': `url(${video.thumbnail})`
+                    }}
+                    className="w-68 h-36 rounded-md bg-[image:var(--image-url)] bg-cover bg-center bg-no-repeat"
+                >
+                    {video.status === 'live' && (
+                        <div className="bg-red-500 w-fit p-1 text-xs font-bold">LIVE!</div>
+                    )}
+                    {video.membersOnly && (
+                        <div className="bg-black w-fit p-1 text-xs">Members Only</div>
+                    )}
                 </div>
+                <div className="my-2 mx-2">
+                    <span className="inline-block max-w-64 font-bold text-sm line-clamp-2 truncate relative z-10 cursor-pointer select-none" title={video.title}>
+                        {video.title}
+                    </span>
+                    {video.streamer && (
+                        <div className="text-sm hover:text-sky-300 w-fit">
+                            <Link href={`https://youtube.com/channel/${video.streamer.id}`} className="relative z-10 w-fit">
+                                {video.streamer.name}
+                            </Link>
+                        </div>
+                    )}
+                    <div className="max-w-64 text-sm">
+                        {(video.status === 'live' ? 'Started ' : '') + scheduledStart?.toRelative()}
+                    </div>
+                </div>
+                <Link href={video.url} className="absolute inset-0" />
             </div>
-            <Link href={video.url} className="absolute inset-0" />
-        </div>
-    )
+        )
+    } else if (video.videoSource === 'twitch') {
+        return (
+            <div className="m-1 bg-accent hover:bg-neutral-700 rounded-md inline-block relative">
+                <div
+                    style={{
+                        // @ts-expect-error: TailwindCSS property, not built-in to React definitions
+                        '--image-url': `url(${video.thumbnail})`
+                    }}
+                    className="w-68 h-36 rounded-md bg-[image:var(--image-url)] bg-cover bg-center bg-no-repeat"
+                >
+                    {video.status === 'live' && (
+                        <div className="bg-purple-500 w-fit p-1 text-xs font-bold">Twitch</div>
+                    )}
+                </div>
+                <div className="my-2 mx-2">
+                    <span className="inline-block max-w-64 font-bold text-sm line-clamp-2 truncate relative z-10 cursor-pointer select-none" title={video.title}>
+                        {video.title}
+                    </span>
+                    {video.streamer && (
+                        <div className="text-sm hover:text-sky-300 w-fit">
+                            <Link href={`https://youtube.com/channel/${video.streamer.id}`} className="relative z-10 w-fit">
+                                {video.streamer.name}
+                            </Link>
+                        </div>
+                    )}
+                    <div className="max-w-64 text-sm">
+                        {(video.status === 'live' ? 'Started ' : '') + scheduledStart?.toRelative()}
+                    </div>
+                </div>
+                <Link href={video.url} className="absolute inset-0" />
+            </div>
+        )
+    }
 }
