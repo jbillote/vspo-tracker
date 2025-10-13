@@ -2,6 +2,7 @@
 
 import { DateTime } from 'luxon'
 import Link from 'next/link'
+import { SiTwitch } from '@icons-pack/react-simple-icons'
 
 type videoCardProps = {
     url: string,
@@ -70,7 +71,9 @@ export default async function VideoCard({ video }: { video: videoCardProps }) {
                     className="w-68 h-36 rounded-md bg-[image:var(--image-url)] bg-cover bg-center bg-no-repeat"
                 >
                     {video.status === 'live' && (
-                        <div className="bg-purple-500 w-fit p-1 text-xs font-bold">Twitch</div>
+                        <div className="bg-purple-500 w-fit p-1 text-xs font-bold">
+                            <SiTwitch />
+                        </div>
                     )}
                 </div>
                 <div className="my-2 mx-2">
