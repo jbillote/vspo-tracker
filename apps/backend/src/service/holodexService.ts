@@ -134,7 +134,6 @@ class HolodexService {
             }
           }
           live.push(v)
-          this.logger.info(v)
         }
       } else if (video.topic_id !== 'FreeChat' && ids.includes(video.channel.id)) {
         const v: Video = {
