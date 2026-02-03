@@ -11,7 +11,7 @@ class HolodexService {
 
   public constructor(logger: Logger) {
     this.logger = logger
-    this.apiKey = env.HOLODEX_API_KEY!
+    this.apiKey = (env.HOLODEX_API_KEY || process.env.HOLODEX_API_KEY)!
   }
 
   public async getChannelInformation(name: string): Promise<Channel> {
@@ -25,8 +25,6 @@ class HolodexService {
       },
     })
     const respJson = await resp.json()
-    this.logger.info("a")
-    this.logger.info(respJson)
 
     return {
       id: respJson.id,
@@ -195,7 +193,7 @@ class HolodexService {
   }
 
   private async getYouTubeIDs(): Promise<string[]> {
-    const streamers = await Bun.file('./channels.json').json()
+    const streamers = await Bun.file(`${import.meta.dir}/../../channels.json`).json()
 
     const ids: string[] = []
     streamers.forEach((org: any) => {
