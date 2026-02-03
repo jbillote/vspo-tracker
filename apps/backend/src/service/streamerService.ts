@@ -11,7 +11,7 @@ class StreamerService {
 
   public async getStreamerNames(): Promise<Org[]> {
     this.logger.info('Fetching streamers from JSON configuration')
-    const streamerConfig = await Bun.file('./channels.json').json()
+    const streamerConfig = await Bun.file(`${import.meta.dir}/../../channels.json`).json()
 
     const orgs: Org[] = []
     streamerConfig.forEach((org: any) => {
