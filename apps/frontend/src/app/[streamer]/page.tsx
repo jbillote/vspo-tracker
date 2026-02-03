@@ -1,6 +1,6 @@
 import ChannelHeader from './components/header'
 import VideoList from '@/components/videoList'
-import { API } from 'libs'
+import { API } from '@vspo-tracker/libs'
 import { notFound } from 'next/navigation'
 
 export default async function Page({ params }: { params: Promise<{ streamer: string }> }) {

@@ -1,4 +1,4 @@
-import { API } from 'libs'
+import { API } from '@vspo-tracker/libs'
 import VideoList from '@/components/videoList'
 
 export default async function Home() {

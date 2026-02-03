@@ -3,7 +3,7 @@
 import { AppSidebar } from "@/components/appSidebar"
 import { SiteHeader } from "@/components/siteHeader"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
-import { API } from 'libs'
+import { API } from '@vspo-tracker/libs'
 import "./globals.css"
 
 export default async function RootLayout({
