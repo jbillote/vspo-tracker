@@ -7,4 +7,4 @@ const streamer = t.Object({
 
 type Streamer = typeof streamer.static
 
-export { Streamer, streamer }
+export { type Streamer, streamer }

@@ -1,12 +1,8 @@
 'use client'
 
-import { useEffect } from 'react'
+export const dynamic = 'force-dynamic'
 
-export default function Error({ error }: { error: Error & { digest?: string } }) {
-  useEffect(() => {
-    console.error(error)
-  }, [error])
-
+export default function Error() {
   return (
     <div className="flex flex-col min-h-screen justify-center items-center">
       <h1 className="text-4xl">that streamer does not exist</h1>

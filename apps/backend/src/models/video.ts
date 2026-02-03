@@ -20,4 +20,4 @@ const video = t.Object({
 
 type Video = typeof video.static
 
-export { Video, video }
+export { type Video, video }

@@ -1,5 +1,7 @@
 'use client'
 
+export const dynamic = 'force-dynamic'
+
 export default function Error({ error }: { error: Error & { digest?: string } }) {
   return (
     <div className="flex flex-col min-h-screen justify-center items-center">

@@ -1,10 +1,11 @@
-'use server'
-
 import { AppSidebar } from "@/components/appSidebar"
 import { SiteHeader } from "@/components/siteHeader"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 import { API } from '@vspo-tracker/libs'
 import "./globals.css"
+
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export default async function RootLayout({
   children,
