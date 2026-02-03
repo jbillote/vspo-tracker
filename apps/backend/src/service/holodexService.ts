@@ -25,6 +25,8 @@ class HolodexService {
       },
     })
     const respJson = await resp.json()
+    this.logger.info("a")
+    this.logger.info(respJson)
 
     return {
       id: respJson.id,

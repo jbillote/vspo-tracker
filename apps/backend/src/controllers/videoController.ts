@@ -1,5 +1,5 @@
 import { Elysia, InternalServerError, t } from 'elysia'
-import { Logger } from 'middleware'
+import { Logger } from '@vspo-tracker/middleware'
 import { video } from '../models/video'
 import { HolodexService } from '../service/holodexService'
 
