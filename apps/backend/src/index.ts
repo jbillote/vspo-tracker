@@ -33,7 +33,8 @@ const app = new Elysia()
   )
   .use(
     cors({
-      origin: '*'
+      origin: process.env.ALLOWED_ORIGINS?.split(',') || '*',
+      credentials: true
     })
   )
   .use(ChannelController)
