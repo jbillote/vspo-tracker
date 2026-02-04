@@ -10,8 +10,7 @@
     "build": "turbo run build",
     "dev": "turbo run dev ",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "postinstall": "pnpm install --lockfile-only --ignore-scripts"
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "prettier": "^3.4.2",
@@ -20,5 +19,5 @@
   "dependencies": {
     "@types/bun": "latest"
   },
-  "packageManager": "pnpm@10.7.1"
+  "packageManager": "bun@1.2.6"
 }

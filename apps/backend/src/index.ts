@@ -1,3 +1,4 @@
+import { cors } from '@elysiajs/cors'
 import { swagger } from '@elysiajs/swagger'
 import { Elysia } from 'elysia'
 import { ChannelController } from './controllers/channelController'
@@ -30,10 +31,19 @@ const app = new Elysia()
       },
     }),
   )
+  .use(
+    cors({
+      origin: process.env.ALLOWED_ORIGINS?.split(',') || '*',
+      credentials: true
+    })
+  )
   .use(ChannelController)
   .use(VideoController)
   .use(StreamerController)
-  .listen(3000)
+  .listen({
+    port: process.env.PORT || 3000,
+    hostname: '0.0.0.0'
+  })
 
 export type App = typeof app
 

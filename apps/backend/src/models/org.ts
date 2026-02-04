@@ -8,4 +8,4 @@ const org = t.Object({
 
 type Org = typeof org.static
 
-export { Org, org }
+export { type Org, org }

@@ -180,3 +180,4 @@ dist
 # sqlite
 dev.db
 dev.db-journal
+.vercel

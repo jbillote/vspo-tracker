@@ -1,5 +1,5 @@
 import { Elysia, InternalServerError, t } from 'elysia'
-import { Logger } from 'middleware'
+import { Logger } from '@vspo-tracker/middleware'
 import { org } from '../models/org'
 import { StreamerService } from '../service/streamerService'
 
@@ -11,7 +11,8 @@ const StreamerController = new Elysia({ prefix: '/api/v1' })
       log: log.child({ component: 'streamerController' }),
     }
   })
-  .onError(({ requestID }) => {
+  .onError(({ log, error, requestID }) => {
+    log?.error(error)
     return new InternalServerError(requestID?.toString())
   })
   .get(

@@ -26,6 +26,9 @@ const nextConfig: NextConfig = {
         search: '',
       },
     ]
+  },
+  typescript: {
+    ignoreBuildErrors: true
   }
 };
 

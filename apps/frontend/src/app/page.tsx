@@ -1,5 +1,7 @@
-import { API } from 'libs'
+import { API } from '@vspo-tracker/libs'
 import VideoList from '@/components/videoList'
+
+export const dynamic = 'force-dynamic'
 
 export default async function Home() {
   const { data, error } = await API.api.v1.videos.live.get({ query: {} })

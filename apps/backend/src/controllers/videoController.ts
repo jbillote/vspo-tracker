@@ -1,5 +1,5 @@
 import { Elysia, InternalServerError, t } from 'elysia'
-import { Logger } from 'middleware'
+import { Logger } from '@vspo-tracker/middleware'
 import { video } from '../models/video'
 import { HolodexService } from '../service/holodexService'
 
@@ -11,7 +11,8 @@ const VideoController = new Elysia({ prefix: '/api/v1/videos' })
       log: log.child({ component: 'videoController' }),
     }
   })
-  .onError(({ requestID }) => {
+  .onError(({ log, requestID, error }) => {
+    log?.error(error)
     return new InternalServerError(requestID?.toString())
   })
   .get(

@@ -11,4 +11,4 @@ const channel = t.Object({
 
 type Channel = typeof channel.static
 
-export { Channel, channel }
+export { type Channel, channel }

@@ -1,5 +1,5 @@
 import { Elysia, InternalServerError, t } from 'elysia'
-import { Logger } from 'middleware'
+import { Logger } from '@vspo-tracker/middleware'
 import { channel } from '../models/channel'
 import { HolodexService } from '../service/holodexService'
 
@@ -11,7 +11,8 @@ const ChannelController = new Elysia({ prefix: '/api/v1/channel' })
       log: log.child({ component: 'channelController' }),
     }
   })
-  .onError(({ code, error, requestID }) => {
+  .onError(({ log, code, error, requestID }) => {
+    log?.error(error)
     if (code === 404) {
       return error
     } else {

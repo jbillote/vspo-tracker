@@ -11,4 +11,4 @@ const branch = t.Object({
 
 type Branch = typeof branch.static
 
-export { Branch, branch }
+export { type Branch, branch }
