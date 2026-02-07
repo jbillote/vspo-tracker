@@ -14,7 +14,6 @@
     "@elysiajs/swagger": "^1.1.6",
     "graphql": "^16.12.0",
     "@elysiajs/cors": "^1.4.1",
-    "@elysiajs/swagger": "^1.1.6",
     "@vspo-tracker/middleware": "workspace:*",
     "elysia": "^1.1.25",
     "luxon": "^3.5.0",
